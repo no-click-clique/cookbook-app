@@ -5,9 +5,23 @@ class Api::RecipesController < ApplicationController
     render "index.json.jb"
   end
 
+  def create
+    @recipe = Recipe.new(
+      title: params["title"],
+      chef: params["chef"],
+      ingredients: params["ingredients"],
+      directions: params["directions"],
+      prep_time: params["prep_time"],
+      image_url: params["image_url"]
+    )
+    @recipe.save
+    render "show.json.jb"
+  end
+
   def show
     @recipe = Recipe.find_by(id: params["id"])
     render "show.json.jb"
   end
-  
+
+
 end
