@@ -6,6 +6,9 @@ class Recipe < ApplicationRecord
   #   @ingredients
   # end
 
+  # reutrns a hash of data of whoever created THIS recipe
+  belongs_to :user
+
   def ingredients_list
     ingredients.split(", ")
   end
