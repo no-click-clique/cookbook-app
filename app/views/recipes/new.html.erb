@@ -17,7 +17,12 @@
     Image Url: <input type="text" name="image_url">
   </div>
   <div>
-    User Id: <input type="number" name="user_id">
+    Choose a User:
+    <select name="user_id" id="">
+      <% User.all.each do |user| %>
+        <option value="<%= user.id %>"><%= user.name %></option>
+      <% end %>
+    </select>
   </div>
   <input type="submit" value="Create Recipe">
 </form>
