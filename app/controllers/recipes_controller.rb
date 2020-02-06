@@ -14,4 +14,17 @@ class RecipesController < ApplicationController
     render "new.html.erb"
   end
 
+  def create
+    @recipe = Recipe.new(
+      title: params[:title],
+      ingredients: params[:ingredients],
+      directions: params[:directions],
+      prep_time: params[:prep_time],
+      image_url: params[:image_url],
+      user_id: params[:user_id]
+    )
+    @recipe.save
+    redirect_to "/recipes/#{@recipe.id}"
+  end
+
 end
