@@ -23,8 +23,11 @@ class RecipesController < ApplicationController
       image_url: params[:image_url],
       user_id: params[:user_id]
     )
-    @recipe.save
-    redirect_to "/recipes/#{@recipe.id}"
+    if @recipe.save
+      redirect_to "/recipes/#{@recipe.id}"
+    else
+      render "new.html.erb"
+    end
   end
 
   def edit
@@ -41,6 +44,12 @@ class RecipesController < ApplicationController
     @recipe.image_url = params[:image_url]
     @recipe.save
     redirect_to "/recipes/#{@recipe.id}"
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+    redirect_to "/recipes"
   end
 
 end
