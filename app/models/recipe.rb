@@ -1,4 +1,6 @@
 class Recipe < ApplicationRecord
+
+  validates :title, presence: true
   # attr_accessor :title, :ingredients, :directions, :prep_time
 
   # # attr reader method
