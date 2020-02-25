@@ -1,3 +1,5 @@
 @recipes.map do |recipe|
-  render partial: "recipe.json.jb", locals: { recipe: recipe }
+  json = render partial: "recipe.json.jb", locals: { recipe: recipe }
+  json[:user] = recipe.user.name
+  json
 end

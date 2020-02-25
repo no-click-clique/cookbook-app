@@ -1,1 +1,19 @@
-render partial: "recipe.json.jb", locals: { recipe: @recipe }
+recipe = render partial: "recipe.json.jb", locals: { recipe: @recipe }
+
+recipe[:formatted] = {
+  ingredients: @recipe.ingredients_list,
+  directions: @recipe.directions_list,
+  created_at: @recipe.friendly_created_at,
+  prep_time: @recipe.friendly_prep_time
+}
+
+# custom object
+# recipe[:user] = {
+#   id: @recipe.user.id,
+#   name: @recipe.user.name
+# }
+
+# render user partial
+recipe[:user] = render partial: "api/users/user.json.jb", locals: {user: @recipe.user}
+
+recipe
