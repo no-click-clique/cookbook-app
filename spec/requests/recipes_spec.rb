@@ -83,4 +83,21 @@ RSpec.describe "Recipes", type: :request do
       expect(response).to have_http_status(:unauthorized)
     end
   end
+
+  describe "DELETE /recipes/:id" do
+    it "should delete a recipe" do
+      jwt = JWT.encode({user_id: User.first.id}, Rails.application.credentials.fetch(:secret_key_base), "HS256")
+      delete "/api/recipes/#{Recipe.first.id}", 
+      headers: { "Authorization" => "Bearer #{jwt}" }
+
+      expect(response).to have_http_status(200)
+      expect(Recipe.count).to eq(2)
+    end
+    it "should delete a recipe" do
+      delete "/api/recipes/#{Recipe.first.id}"
+
+      expect(response).to have_http_status(:unauthorized)
+      expect(Recipe.count).to eq(3)
+    end
+  end
 end
