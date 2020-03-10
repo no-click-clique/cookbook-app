@@ -20,4 +20,6 @@ Rails.application.routes.draw do
     get "/users/:id" => "users#show"
     post "/sessions" => "sessions#create"
   end
+
+  get "/*path" => proc { [200, {}, [ActionView::Base.new.render(file: 'public/index.html')]] }
 end
