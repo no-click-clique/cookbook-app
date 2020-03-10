@@ -97,7 +97,7 @@ RSpec.describe "Recipes", type: :request do
       delete "/api/recipes/#{Recipe.first.id}"
 
       expect(response).to have_http_status(:unauthorized)
-      expect(Recipe.count).to eq(3)
+      expect(Recipe.count).to eq(2)
     end
   end
 end
