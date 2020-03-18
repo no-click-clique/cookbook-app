@@ -10,6 +10,7 @@ class Recipe < ApplicationRecord
 
   # reutrns a hash of data of whoever created THIS recipe
   belongs_to :user
+  has_many :messages
 
   def ingredients_list
     ingredients.split(", ")
